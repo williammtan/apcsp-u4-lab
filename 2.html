@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="inputs">
+    </div>
+    <button onclick="addInput()">+</button>
+    
+
+    <script>
+        let maxIdx = 0;
+
+        window.onload = () => {
+            while (maxIdx <= 6) {
+                addInput();
+            }
+        }
+
+        function update(idx) {
+            let percentage = parseInt(document.getElementById("input"+idx).value);
+            let grade;
+            if (percentage > 90) {
+                grade = "A";
+            } else if (percentage > 80) {
+                grade = "B";
+            } else if (percentage > 70) {
+                grade = "C";
+            } else if (percentage > 60) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            document.getElementById("output"+idx).innerHTML = grade;
+        }
+
+        function addInput() {
+            maxIdx++;
+            let div = document.createElement("div");
+            div.innerHTML += `<input id=input${maxIdx} oninput="update(${maxIdx})"> <p id=output${maxIdx}></p>`;
+            document.getElementById("inputs").appendChild(div);
+        }
+    </script>
+</body>
+</html>
